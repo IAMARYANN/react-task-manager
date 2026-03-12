@@ -1,50 +1,81 @@
 # React Task Manager
 
-A task management app built with React 18 + Vite, integrated with the JSONPlaceholder REST API.
+A simple task management application built with React 18 and Vite, integrated with the JSONPlaceholder REST API.
 
-## Features
+# Features
 
-- **Fetch & display tasks** — loads 20 todos from JSONPlaceholder on startup with a loading skeleton
-- **Add tasks** — form with title (required), description, priority, and due date fields
-- **Toggle completion** — optimistic UI update with PATCH to API
-- **Delete tasks** — inline confirmation before permanent removal
-- **Task detail page** — edit title, description, priority, due date via `/tasks/:id` route
-- **Search & filter** — real-time search by title, filter by All / Pending / Completed
-- **Sort** — by priority (high → low) or due date
-- **Dark / light mode** — persisted in localStorage
-- **localStorage persistence** — tasks survive page refresh
-- **Overdue indicators** — visual warning for past-due incomplete tasks
-- **Custom `useFetch` hook** — reusable hook encapsulating loading/error/data state
-- **Responsive layout** — works on mobile and desktop
+- Fetch & display tasks — loads 20 todos from JSONPlaceholder when the app starts and shows a loading skeleton while data is being fetched
 
-## Tech Stack
+- Add tasks — form with title (required), description, priority, and due date fields
 
-- React 18 with functional components + hooks
-- React Router v6 (2 routes: `/` and `/tasks/:id`)
+- Toggle completion — mark tasks as complete or pending with an optimistic UI update and PATCH request
+
+- Delete tasks — remove tasks with a confirmation step before deletion
+
+- Task detail page — view and edit title, description, priority, and due date via the /tasks/:id route
+
+- Search & filter — real-time search by title and filter by All / Pending / Completed
+
+- Sort — tasks can be sorted by priority (high → low) or due date
+
+- Dark / light mode — theme preference is saved in localStorage
+
+- localStorage persistence — tasks remain available after a page refresh
+
+- Overdue indicators — visual warning for tasks that are past their due date
+
+- Custom useFetch hook — small reusable hook for handling loading, error, and API response state
+
+# Tech Stack
+
+- React 18 with functional components and hooks
+
+- React Router v6 (routes: / and /tasks/:id)
+
 - Axios for HTTP requests
-- CSS Modules for scoped styles
-- Vite as the build tool
 
-## Running locally
+- CSS Modules for scoped component styling
 
-```bash
-npm install
-npm run dev
-```
+- Vite as the development and build tool
 
-Then open [http://localhost:5173](http://localhost:5173).
+# Running Locally
 
-## How it works
+Install dependencies and start the development server:
 
-Since JSONPlaceholder is a mock API, POST/PATCH/PUT/DELETE calls return fake success responses. The app simulates real state changes locally after each API call — tasks added, edited, or deleted are reflected immediately in the UI and persisted to `localStorage`.
+- npm install
+- npm run dev
 
-New tasks get a locally-generated ID (`Date.now()`) since the mock API always returns `id: 201`.
+Then open:
 
-## What I'd improve with more time
+- http://localhost:5173
+# How the API Works in This App
 
-- Add user authentication so tasks are per-user
-- Replace localStorage with a real backend (e.g. Supabase or a simple Express API)
-- Add drag-and-drop reordering
-- Unit tests with React Testing Library for the context and components
-- More nuanced error handling with retry logic and toast notifications
-- Pagination or infinite scroll for larger task lists
+- This project uses the JSONPlaceholder API, which is a mock REST API used for testing.
+
+- Operations such as POST, PATCH, PUT, and DELETE return successful responses but do not actually update the server data.
+
+# To simulate real application behavior:
+
+- The app updates tasks in local React state
+
+- Changes are also saved in localStorage
+
+- This allows tasks to persist even after refreshing the page
+
+# New tasks receive a locally generated ID using:
+
+- Date.now()
+
+because the JSONPlaceholder API always returns the same ID (201) for newly created items.
+
+# What I'd Improve With More Time
+
+- Add user authentication so tasks are tied to specific users
+
+- Replace localStorage with a real backend (for example a Python Flask/FastAPI API)
+
+- Add drag-and-drop task reordering
+
+- Improve error handling with retry logic and toast notifications
+
+- Add pagination or infinite scrolling for larger task lists
